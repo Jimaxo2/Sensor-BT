@@ -3,7 +3,7 @@ Sensor por conexion bluetooth con grafiica hecha en python entre un ESP32 y un s
 
 Para inizializar el programa en Python lo primero es inicializar un entorno virtual (venv) ejecutando el siguiente comando en la terminal
 
-**Windows: **
+**Windows:**
 
 ``` python3 -m venv .venv ```
 
