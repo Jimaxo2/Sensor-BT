@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "BluetoothSerial.h"
 
-String device_name = "ESP32-BT-Jimmy";
+String device_name = "ESP32-BT-Sensor";
 
 // Check if Bluetooth is available
 #if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
@@ -18,25 +18,26 @@ BluetoothSerial SerialBT;
 void setup() {
 
   Serial.begin(115200);
-  SerialBT.begin(device_name);  //Bluetooth device name
-  //SerialBT.deleteAllBondedDevices(); // Uncomment this to delete paired devices; Must be called after begin
-  Serial.printf("The device with name \"%s\" is started.\nNow you can pair it with Bluetooth!\n", device_name.c_str());
 
+  // Inicializamos el Bluetooth con el nombre del dispositivo
+  SerialBT.begin(device_name);  // Bluetooth nombre del dispositivo
+
+  // Muestra los bytes de datos disponibles en el monitor serial
   Serial.println(SerialBT.available());
 
 }
 
 void loop() {
 
-  Serial.println(SerialBT.hasClient());
   if (SerialBT.hasClient()) {
     
+    // Generamos un número aleatorio entre 1 y 9
     int x = random(1, 10);
 
-    // probar print o write alguno debe funcionar
+    // En cada loop enviamos linea a linea el dato
     SerialBT.println(x);
 
-    Serial.write(x);
+    // Imprime en el monitor serial
     Serial.println(x);
   }
 
